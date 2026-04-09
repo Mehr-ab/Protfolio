@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehrab Hossain - Premium Link Presence</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        darkBg: '#050505',
+                        darkSurface: '#111114',
+                        slateGray: '#27272a',
+                        primary: '#3b82f6',
+                        accent: '#ff8c00',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            background-color: #050505; 
+            color: #d1d5db; 
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -10%; left: -10%; width: 120%; height: 120%;
+            background-image: radial-gradient(circle at center, rgba(59, 130, 246, 0.08), transparent 60%);
+            z-index: -1;
+            filter: blur(50px);
+        }
+        
+        .premium-card {
+            background-color: #111114;
+            border: 1px solid rgba(39, 39, 42, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .premium-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            background-color: #0f0f12;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 0 15px -5px rgba(59, 130, 246, 0.2);
+        }
+        
+        .grid-hover-item { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .grid-hover-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px -5px rgba(59, 130, 246, 0.15);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #f8fafc, #94a3b8);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .text-depth {
+            color: white;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.6), 2px 2px 2px rgba(0,0,0,0.4), 0px 0px 5px rgba(59, 130, 246, 0.1);
+        }
+        
+        #profile-img {
+            transition: object-position 0.1s ease, transform 0.1s ease;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen py-10 px-5 flex flex-col items-center">
+
+    <div class="w-full max-w-2xl">
+        
+        <header class="text-center mb-12 border-b border-slateGray pb-10">
+            
+            <div id="image-container" class="w-full h-56 md:h-72 mx-auto mb-6 rounded-3xl overflow-hidden border border-slateGray bg-darkSurface relative shadow-xl cursor-pointer">
+                <div class="absolute inset-0 bg-primary opacity-0 hover:opacity-10 transition-opacity z-10 pointer-events-none"></div>
+                
+                <img id="profile-img" src="https://i.ibb.co.com/hxzKYt3M/IMG-20260321-145156.jpg" alt="Mehrab Hossain - Profile Picture" class="w-full h-full object-cover" style="object-position: center 28%; transform: scale(1);">
+                </div>
+
+            <div id="secret-editor" class="hidden flex-col gap-4 bg-[#111114] border border-primary/40 p-5 rounded-2xl mx-auto mb-8 w-full max-w-md shadow-[0_0_20px_rgba(59,130,246,0.15)] text-left z-50 relative">
+                <div class="flex justify-between items-center mb-1">
+                    <p class="text-xs text-primary font-bold uppercase tracking-widest">Secret Adjuster (5 Taps)</p>
+                    <button id="close-editor" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                
+                <div>
+                    <label class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Change Image Link</label>
+                    <input type="text" id="img-url-input" placeholder="Paste new image URL here" class="w-full bg-[#1a1a1f] border border-gray-700 text-white text-xs p-2 rounded mt-1 outline-none focus:border-primary">
+                </div>
+
+                <div>
+                    <label class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Up / Down Position</label>
+                    <input type="range" id="pos-slider" min="0" max="100" value="28" class="w-full accent-primary mt-1">
+                </div>
+                
+                <div>
+                    <label class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Zoom</label>
+                    <input type="range" id="zoom-slider" min="1" max="2.5" step="0.01" value="1" class="w-full accent-primary mt-1">
+                </div>
+
+                <div class="mt-2">
+                    <p class="text-[10px] text-gray-500 mb-1">Copy this code & replace the highlighted image tag in HTML:</p>
+                    <code id="code-output" class="block bg-black p-2 rounded text-xs text-green-400 break-all border border-gray-800 font-mono"></code>
+                </div>
+
+                <button id="copy-code-btn" class="w-full py-3 bg-primary text-darkBg font-bold text-sm rounded-xl hover:bg-white transition-colors mt-2">
+                    <i class="fa-solid fa-code mr-2"></i> Copy New Image Code
+                </button>
+            </div>
+            
+            <div class="space-y-4 px-3">
+                <div class="space-y-1.5">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tighter text-gradient">Mehrab Hossain</h1>
+                    <p class="text-xl font-semibold text-primary tracking-wide">Law Student & Tech Innovator</p>
+                </div>
+                <p class="text-gray-300 text-base md:text-lg font-normal leading-relaxed text-depth max-w-xl mx-auto">
+                    Undergraduate LLB Student, merging a legal foundation with a passion for tech innovation and AI applications. Fascinate to digital frontiers.
+                </p>
+            </div>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-7 ml-3 flex items-center"><i class="fa-solid fa-link mr-2.5 text-accent"></i> CONNECT WITH ME</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                <a href="https://www.linkedin.com/in/mehrabdiu" target="_blank" class="grid-hover-item premium-card p-5 rounded-3xl flex flex-col justify-between h-40">
+                    <i class="fa-brands fa-linkedin text-[#0A66C2] text-3xl"></i>
+                    <div class="space-y-0.5">
+                        <h3 class="text-white font-bold text-sm tracking-tight">LinkedIn</h3>
+                        <p class="text-gray-500 text-xs">Professional network</p>
+                    </div>
+                </a>
+                <a href="https://github.com/Mehr-ab" target="_blank" class="grid-hover-item premium-card p-5 rounded-3xl flex flex-col justify-between h-40 border border-white/5">
+                    <i class="fa-brands fa-github text-white text-3xl"></i>
+                    <div class="space-y-0.5">
+                        <h3 class="text-white font-bold text-sm tracking-tight">GitHub</h3>
+                        <p class="text-gray-500 text-xs">Code Portfolio</p>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/mehrab_2921" target="_blank" class="grid-hover-item premium-card p-5 rounded-3xl flex flex-col justify-between h-40">
+                    <i class="fa-brands fa-instagram text-[#E1306C] text-3xl"></i>
+                    <div class="space-y-0.5">
+                        <h3 class="text-white font-bold text-sm tracking-tight">Instagram</h3>
+                        <p class="text-gray-500 text-xs">Photos & Lifestyle</p>
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/mehrab.2921" target="_blank" class="grid-hover-item premium-card p-5 rounded-3xl flex flex-col justify-between h-40">
+                    <i class="fa-brands fa-facebook-f text-[#1877F2] text-3xl"></i>
+                    <div class="space-y-0.5">
+                        <h3 class="text-white font-bold text-sm tracking-tight">Facebook</h3>
+                        <p class="text-gray-500 text-xs">Stay connected</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="https://x.com/Mehrab_2921" target="_blank" class="premium-card flex items-center p-5 rounded-2xl group relative overflow-hidden">
+                    <div class="w-11 h-11 rounded-full border border-slateGray flex items-center justify-center mr-5 bg-black group-hover:border-white transition-colors">
+                        <i class="fa-brands fa-x-twitter text-white text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-white font-semibold text-sm tracking-tight">X (Twitter)</h3>
+                        <p class="text-gray-500 text-xs tracking-wide">Thoughts & Updates</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-600 group-hover:text-primary transition-colors"></i>
+                </a>
+                <a href="https://wa.me/8801403372100" target="_blank" class="premium-card flex items-center p-5 rounded-2xl group relative overflow-hidden">
+                    <div class="w-11 h-11 rounded-full border border-slateGray flex items-center justify-center mr-5 bg-[#25D366]/10 group-hover:bg-[#25D366]/20 transition-colors">
+                        <i class="fa-brands fa-whatsapp text-[#25D366] text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-white font-semibold text-sm tracking-tight">WhatsApp</h3>
+                        <p class="text-gray-500 text-xs tracking-wide">Direct message</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-600 group-hover:text-primary transition-colors"></i>
+                </a>
+                <a href="mailto:mehrabhossain428@gmail.com" class="premium-card flex items-center p-5 rounded-2xl group relative overflow-hidden md:col-span-2">
+                    <div class="w-11 h-11 rounded-full border border-slateGray flex items-center justify-center mr-5 bg-red-500/10 group-hover:bg-red-500/20 transition-colors">
+                        <i class="fa-solid fa-envelope text-red-500 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-white font-semibold text-sm tracking-tighter">Official Email Address</h3>
+                        <p class="text-gray-500 text-xs tracking-wide">mehrabhossain428@gmail.com</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-gray-600 group-hover:text-primary transition-colors"></i>
+                </a>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-7 ml-3 flex items-center"><i class="fa-solid fa-award mr-2.5 text-accent"></i> Key Certificates</h2>
+            <div class="space-y-4">
+                <div class="premium-card p-7 rounded-[28px] relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-indigo-950/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
+                    <div class="flex justify-between items-start mb-3 relative z-10">
+                        <h3 class="font-bold text-zinc-100 text-xl tracking-tight group-hover:text-primary transition-colors">Certified Course on Legal Framework of Sports</h3>
+                        <div class="w-9 h-9 rounded-full border border-slateGray flex items-center justify-center bg-indigo-950/20 group-hover:border-primary transition-colors">
+                            <i class="fa-solid fa-gavel text-indigo-400 group-hover:text-primary transition-colors"></i>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed mb-5 relative z-10">Completed a specialized course covering the legal, regulatory, and governance frameworks governing professional, national, and international sports dimensions.</p>
+                    <div class="flex flex-wrap gap-2 text-gray-500 text-xs mb-6 tracking-wide border-t border-slateGray/40 pt-4 relative z-10">
+                        <span>Authority: Kathmandu University School of Law</span>
+                        <span>| Certificate No: KUSOL-OC-20260322-1</span>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1e74kQ7PHgdqkd1bsQncqCRXILhCdW7V1/view?usp=drivesdk" target="_blank" class="relative z-20 inline-flex items-center gap-2 px-7 py-2.5 bg-primary text-darkBg rounded-full text-sm font-semibold hover:bg-white hover:text-darkBg transition-all transform hover:scale-105 shadow-md">
+                        View Credential <i class="fa-solid fa-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <div class="premium-card p-7 rounded-[28px] relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-zinc-800/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
+                    <div class="flex justify-between items-start mb-3 relative z-10">
+                        <h3 class="font-bold text-zinc-100 text-xl tracking-tight group-hover:text-primary transition-colors">Gemini Certified Student</h3>
+                        <div class="w-9 h-9 rounded-full border border-slateGray flex items-center justify-center bg-zinc-800/10 group-hover:border-primary transition-colors">
+                            <i class="fa-regular fa-id-badge text-zinc-600 group-hover:text-primary transition-colors"></i>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed mb-5 relative z-10">Awarded for demonstrating knowledge, skills, and competencies required to use Google AI tools effectively for academic purposes.</p>
+                    <div class="flex flex-wrap gap-2 text-gray-500 text-xs mb-6 tracking-wide border-t border-slateGray/40 pt-4 relative z-10">
+                        <span>Authority: Google for Education</span>
+                        <span>| Valid through January 2029.</span>
+                    </div>
+                    <a href="https://edu.google.accredible.com/7ad8559b-310b-4875-b171-25a1e23b235f#acc.YsLtP0yc" target="_blank" class="relative z-20 inline-flex items-center gap-2 px-7 py-2.5 bg-darkSurface text-gray-300 rounded-full text-sm font-semibold border border-slateGray hover:border-white transition-all transform hover:scale-105 shadow-md hover:text-white">
+                        View Credential <i class="fa-solid fa-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center pb-8 pt-6 border-t border-slateGray">
+            <p class="text-xs text-gray-600 font-medium tracking-wide">© 2026 Mehrab Hossain. Curated Premium Presence.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const img = document.getElementById('profile-img');
+            const editor = document.getElementById('secret-editor');
+            const posSlider = document.getElementById('pos-slider');
+            const zoomSlider = document.getElementById('zoom-slider');
+            const urlInput = document.getElementById('img-url-input');
+            const copyBtn = document.getElementById('copy-code-btn');
+            const closeBtn = document.getElementById('close-editor');
+            const imgContainer = document.getElementById('image-container');
+            const codeOutput = document.getElementById('code-output');
+
+            // Load from LocalStorage for your own device (Defaults to your specific provided values)
+            let currentPos = localStorage.getItem('mhrbPos') || 28;
+            let currentZoom = localStorage.getItem('mhrbZoom') || 1;
+            let currentImgUrl = localStorage.getItem('mhrbImgUrl') || "https://i.ibb.co.com/hxzKYt3M/IMG-20260321-145156.jpg";
+            
+            // Apply Initial Values
+            img.src = currentImgUrl;
+            img.style.objectPosition = `center ${currentPos}%`;
+            img.style.transform = `scale(${currentZoom})`;
+            
+            posSlider.value = currentPos;
+            zoomSlider.value = currentZoom;
+            urlInput.value = currentImgUrl;
+            updateCodeOutput();
+
+            // 5 Taps Logic
+            let clickCount = 0;
+            let clickTimer;
+
+            imgContainer.addEventListener('click', (e) => {
+                e.preventDefault();
+                clickCount++;
+                clearTimeout(clickTimer);
+                
+                clickTimer = setTimeout(() => { clickCount = 0; }, 600); // 600ms window for taps
+
+                if (clickCount === 5) {
+                    editor.classList.remove('hidden');
+                    editor.classList.add('flex');
+                    clickCount = 0;
+                }
+            });
+
+            closeBtn.addEventListener('click', () => {
+                editor.classList.add('hidden');
+                editor.classList.remove('flex');
+            });
+
+            // Update Image & Code Output Live
+            function updateCodeOutput() {
+                const generatedHTML = `<img id="profile-img" src="${currentImgUrl}" alt="Mehrab Hossain - Profile Picture" class="w-full h-full object-cover" style="object-position: center ${currentPos}%; transform: scale(${currentZoom});">`;
+                codeOutput.innerText = generatedHTML;
+            }
+
+            urlInput.addEventListener('input', (e) => {
+                currentImgUrl = e.target.value;
+                img.src = currentImgUrl;
+                localStorage.setItem('mhrbImgUrl', currentImgUrl);
+                updateCodeOutput();
+            });
+
+            posSlider.addEventListener('input', (e) => {
+                currentPos = e.target.value;
+                img.style.objectPosition = `center ${currentPos}%`;
+                localStorage.setItem('mhrbPos', currentPos);
+                updateCodeOutput();
+            });
+
+            zoomSlider.addEventListener('input', (e) => {
+                currentZoom = e.target.value;
+                img.style.transform = `scale(${currentZoom})`;
+                localStorage.setItem('mhrbZoom', currentZoom);
+                updateCodeOutput();
+            });
+
+            // Copy Code to Clipboard
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(codeOutput.innerText).then(() => {
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Code Copied!';
+                    copyBtn.classList.replace('bg-primary', 'bg-green-500');
+                    copyBtn.classList.replace('text-darkBg', 'text-white');
+                    
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                        copyBtn.classList.replace('bg-green-500', 'bg-primary');
+                        copyBtn.classList.replace('text-white', 'text-darkBg');
