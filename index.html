@@ -87,7 +87,8 @@
                 <div class="absolute inset-0 bg-primary opacity-0 hover:opacity-10 transition-opacity z-10 pointer-events-none"></div>
                 
                 <img id="profile-img" src="https://i.ibb.co.com/hxzKYt3M/IMG-20260321-145156.jpg" alt="Mehrab Hossain - Profile Picture" class="w-full h-full object-cover" style="object-position: center 28%; transform: scale(1);">
-                </div>
+
+            </div>
 
             <div id="secret-editor" class="hidden flex-col gap-4 bg-[#111114] border border-primary/40 p-5 rounded-2xl mx-auto mb-8 w-full max-w-md shadow-[0_0_20px_rgba(59,130,246,0.15)] text-left z-50 relative">
                 <div class="flex justify-between items-center mb-1">
@@ -96,8 +97,11 @@
                 </div>
                 
                 <div>
-                    <label class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Change Image Link</label>
-                    <input type="text" id="img-url-input" placeholder="Paste new image URL here" class="w-full bg-[#1a1a1f] border border-gray-700 text-white text-xs p-2 rounded mt-1 outline-none focus:border-primary">
+                    <label class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Upload from Device</label>
+                    <input type="file" id="file-upload" accept="image/*" class="hidden">
+                    <button onclick="document.getElementById('file-upload').click()" class="w-full bg-[#1a1a1f] border border-dashed border-gray-600 text-gray-400 text-xs py-3 rounded mt-1 hover:border-primary hover:text-white transition-all">
+                        <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Choose Image File
+                    </button>
                 </div>
 
                 <div>
@@ -111,19 +115,19 @@
                 </div>
 
                 <div class="mt-2">
-                    <p class="text-[10px] text-gray-500 mb-1">Copy this code & replace the highlighted image tag in HTML:</p>
-                    <code id="code-output" class="block bg-black p-2 rounded text-xs text-green-400 break-all border border-gray-800 font-mono"></code>
+                    <p class="text-[10px] text-gray-500 mb-1 italic">Note: Locally uploaded images save in this browser only.</p>
+                    <code id="code-output" class="hidden"></code>
                 </div>
 
-                <button id="copy-code-btn" class="w-full py-3 bg-primary text-darkBg font-bold text-sm rounded-xl hover:bg-white transition-colors mt-2">
-                    <i class="fa-solid fa-code mr-2"></i> Copy New Image Code
+                <button id="copy-code-btn" class="w-full py-3 bg-primary text-darkBg font-bold text-sm rounded-xl hover:bg-white transition-colors">
+                    <i class="fa-solid fa-code mr-2"></i> Copy Image Tag Code
                 </button>
             </div>
             
             <div class="space-y-4 px-3">
                 <div class="space-y-1.5">
                     <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tighter text-gradient">Mehrab Hossain</h1>
-                    <p class="text-xl font-semibold text-primary tracking-wide">Law Student & Tech Innovator</p>
+                    <p class="text-xl font-semibold text-primary tracking-wide">Law Student & Tech Enthusiast </p>
                 </div>
                 <p class="text-gray-300 text-base md:text-lg font-normal leading-relaxed text-depth max-w-xl mx-auto">
                     Undergraduate LLB Student, merging a legal foundation with a passion for tech innovation and AI applications. Fascinate to digital frontiers.
@@ -186,16 +190,6 @@
                     </div>
                     <i class="fa-solid fa-chevron-right text-gray-600 group-hover:text-primary transition-colors"></i>
                 </a>
-                <a href="mailto:mehrabhossain428@gmail.com" class="premium-card flex items-center p-5 rounded-2xl group relative overflow-hidden md:col-span-2">
-                    <div class="w-11 h-11 rounded-full border border-slateGray flex items-center justify-center mr-5 bg-red-500/10 group-hover:bg-red-500/20 transition-colors">
-                        <i class="fa-solid fa-envelope text-red-500 text-2xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-white font-semibold text-sm tracking-tighter">Official Email Address</h3>
-                        <p class="text-gray-500 text-xs tracking-wide">mehrabhossain428@gmail.com</p>
-                    </div>
-                    <i class="fa-solid fa-arrow-right text-gray-600 group-hover:text-primary transition-colors"></i>
-                </a>
             </div>
         </section>
 
@@ -211,10 +205,6 @@
                         </div>
                     </div>
                     <p class="text-sm text-zinc-400 leading-relaxed mb-5 relative z-10">Completed a specialized course covering the legal, regulatory, and governance frameworks governing professional, national, and international sports dimensions.</p>
-                    <div class="flex flex-wrap gap-2 text-gray-500 text-xs mb-6 tracking-wide border-t border-slateGray/40 pt-4 relative z-10">
-                        <span>Authority: Kathmandu University School of Law</span>
-                        <span>| Certificate No: KUSOL-OC-20260322-1</span>
-                    </div>
                     <a href="https://drive.google.com/file/d/1e74kQ7PHgdqkd1bsQncqCRXILhCdW7V1/view?usp=drivesdk" target="_blank" class="relative z-20 inline-flex items-center gap-2 px-7 py-2.5 bg-primary text-darkBg rounded-full text-sm font-semibold hover:bg-white hover:text-darkBg transition-all transform hover:scale-105 shadow-md">
                         View Credential <i class="fa-solid fa-up-right-from-square"></i>
                     </a>
@@ -229,10 +219,6 @@
                         </div>
                     </div>
                     <p class="text-sm text-zinc-400 leading-relaxed mb-5 relative z-10">Awarded for demonstrating knowledge, skills, and competencies required to use Google AI tools effectively for academic purposes.</p>
-                    <div class="flex flex-wrap gap-2 text-gray-500 text-xs mb-6 tracking-wide border-t border-slateGray/40 pt-4 relative z-10">
-                        <span>Authority: Google for Education</span>
-                        <span>| Valid through January 2029.</span>
-                    </div>
                     <a href="https://edu.google.accredible.com/7ad8559b-310b-4875-b171-25a1e23b235f#acc.YsLtP0yc" target="_blank" class="relative z-20 inline-flex items-center gap-2 px-7 py-2.5 bg-darkSurface text-gray-300 rounded-full text-sm font-semibold border border-slateGray hover:border-white transition-all transform hover:scale-105 shadow-md hover:text-white">
                         View Credential <i class="fa-solid fa-up-right-from-square"></i>
                     </a>
@@ -241,7 +227,7 @@
         </section>
 
         <footer class="text-center pb-8 pt-6 border-t border-slateGray">
-            <p class="text-xs text-gray-600 font-medium tracking-wide">© 2026 Mehrab Hossain. Curated Premium Presence.</p>
+            <p class="text-xs text-gray-600 font-medium tracking-wide">© 2026 Mehrab Hossain.</p>
         </footer>
 
     </div>
@@ -252,37 +238,30 @@
             const editor = document.getElementById('secret-editor');
             const posSlider = document.getElementById('pos-slider');
             const zoomSlider = document.getElementById('zoom-slider');
-            const urlInput = document.getElementById('img-url-input');
+            const fileInput = document.getElementById('file-upload');
             const copyBtn = document.getElementById('copy-code-btn');
             const closeBtn = document.getElementById('close-editor');
             const imgContainer = document.getElementById('image-container');
             const codeOutput = document.getElementById('code-output');
 
-            // Load from LocalStorage for your own device (Defaults to your specific provided values)
             let currentPos = localStorage.getItem('mhrbPos') || 28;
             let currentZoom = localStorage.getItem('mhrbZoom') || 1;
-            let currentImgUrl = localStorage.getItem('mhrbImgUrl') || "https://i.ibb.co.com/hxzKYt3M/IMG-20260321-145156.jpg";
+            let currentImg = localStorage.getItem('mhrbSavedImg') || img.src;
             
-            // Apply Initial Values
-            img.src = currentImgUrl;
+            img.src = currentImg;
             img.style.objectPosition = `center ${currentPos}%`;
             img.style.transform = `scale(${currentZoom})`;
-            
             posSlider.value = currentPos;
             zoomSlider.value = currentZoom;
-            urlInput.value = currentImgUrl;
             updateCodeOutput();
 
-            // 5 Taps Logic
+            // 5 Taps Window Fixed (Increased to 800ms)
             let clickCount = 0;
             let clickTimer;
-
             imgContainer.addEventListener('click', (e) => {
-                e.preventDefault();
                 clickCount++;
                 clearTimeout(clickTimer);
-                
-                clickTimer = setTimeout(() => { clickCount = 0; }, 600); // 600ms window for taps
+                clickTimer = setTimeout(() => { clickCount = 0; }, 800); 
 
                 if (clickCount === 5) {
                     editor.classList.remove('hidden');
@@ -296,18 +275,25 @@
                 editor.classList.remove('flex');
             });
 
-            // Update Image & Code Output Live
-            function updateCodeOutput() {
-                const generatedHTML = `<img id="profile-img" src="${currentImgUrl}" alt="Mehrab Hossain - Profile Picture" class="w-full h-full object-cover" style="object-position: center ${currentPos}%; transform: scale(${currentZoom});">`;
-                codeOutput.innerText = generatedHTML;
-            }
-
-            urlInput.addEventListener('input', (e) => {
-                currentImgUrl = e.target.value;
-                img.src = currentImgUrl;
-                localStorage.setItem('mhrbImgUrl', currentImgUrl);
-                updateCodeOutput();
+            // Local File Upload Logic
+            fileInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        currentImg = e.target.result;
+                        img.src = currentImg;
+                        localStorage.setItem('mhrbSavedImg', currentImg);
+                        updateCodeOutput();
+                    }
+                    reader.readAsDataURL(file);
+                }
             });
+
+            function updateCodeOutput() {
+                const tag = `<img id="profile-img" src="${currentImg.startsWith('data:') ? 'PASTE_URL_HERE' : currentImg}" class="w-full h-full object-cover" style="object-position: center ${currentPos}%; transform: scale(${currentZoom});">`;
+                codeOutput.innerText = tag;
+            }
 
             posSlider.addEventListener('input', (e) => {
                 currentPos = e.target.value;
@@ -323,15 +309,14 @@
                 updateCodeOutput();
             });
 
-            // Copy Code to Clipboard
             copyBtn.addEventListener('click', () => {
                 navigator.clipboard.writeText(codeOutput.innerText).then(() => {
                     const originalText = copyBtn.innerHTML;
                     copyBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Code Copied!';
-                    copyBtn.classList.replace('bg-primary', 'bg-green-500');
-                    copyBtn.classList.replace('text-darkBg', 'text-white');
-                    
-                    setTimeout(() => {
-                        copyBtn.innerHTML = originalText;
-                        copyBtn.classList.replace('bg-green-500', 'bg-primary');
-                        copyBtn.classList.replace('text-white', 'text-darkBg');
+                    setTimeout(() => { copyBtn.innerHTML = originalText; }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
